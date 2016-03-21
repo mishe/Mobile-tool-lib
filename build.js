@@ -53,9 +53,9 @@ var webpack = require("webpack"),
 
 if (debug) {
     _config.devtool= 'source-map';
-    _config.entry.app.push('webpack/hot/dev-serve');
-    //_config.entry.app.push('webpack-dev-server/client?http://127.0.0.1:8080');
-    //_config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    _config.entry.app.push('webpack/hot/dev-server');
+    _config.entry.app.push('webpack-dev-server/client?http://127.0.0.1:8080');
+    _config.plugins.push(new webpack.HotModuleReplacementPlugin());
 } else if (build_realse) {
     _config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
