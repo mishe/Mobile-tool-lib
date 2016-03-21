@@ -1,6 +1,7 @@
 var template = _.template(require('./shopCart.html')),
     timeout,
-    scrollTop;
+    scrollTop,
+    toucheStartX;
 require('./shopCart.css');
 
 module.exports = Backbone.View.extend({
@@ -63,7 +64,11 @@ module.exports = Backbone.View.extend({
         'tap .product-del-btn': 'removeProduct',
         'tap .select-all': 'selectAll',
         'tap .checkout-btn': 'checkout',
-        'touchmove': 'cancelDefaultEvent'
+        'touchmove': 'cancelDefaultEvent',
+        'touchstart': 'toucheStartX'
+    },
+    toucheStartX: function (e) {
+        toucheStartX = e.originalEvent.touches[0].clientX;
     },
     cancelDefaultEvent: function (e) {
         e.preventDefault();
@@ -137,10 +142,12 @@ module.exports = Backbone.View.extend({
     },
     hideCart: function () {
         var self = this;
-        this.$el.translate3d(0);
-        setTimeout(function () {
-            self.remove();
-        }, 800)
+        if (toucheStartX < 50) {
+            this.$el.translate3d(0);
+            setTimeout(function () {
+                self.remove();
+            }, 800);
+        }
     },
     changePage: function (e) {
         var link = $(e.currentTarget).attr('data-link');

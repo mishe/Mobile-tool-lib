@@ -29,16 +29,37 @@ module.exports=Backbone.Router.extend({
     },
 
     routes:{
-        'index.html':                             'home',
-        'st/*':                             'st',
+        '':                             'home',
+        'cate/:cateID/:subCateID':      'category',
+        'product/*':                    'productDetail',
+
+        'user/*':                       'userCenter',
+        'user/account/*':               'myAccount',
+        'user/account/accountDetail':   'myAccountDetail',
+        'user/card/*':                  'myCard',
+        'user/orders/*':                'myOrders',
+        'user/purchase/*':              'myPurchase',
+        'user/coupon/*':                'myCoupon',
+        'user/address/*':               'myAddress',
+        'user/credit/*':                'myCredit',
+        'user/credit/:creditID*':       'myCreditDetail',
+        'user/info/*':                  'myInfo',
+        'user/password/*':              'myPassword',
+        'user/history/*':               'myHistory',
+        'user/favorite/*':              'myFavorite',
+        'user/recommend/*':             'myRecommend',
+        'user/comment/*':               'myComment',
+        'user/shopCart/*':              'shopCart',
+        'user/login/*':                 'login',
+        'user/login/weChat/*':          'weChatLogin',
+        'user/register/*':              'register',
+        'user/register/weChat*':        'weChatRegister',
+        'user/forgot/*':                'forgot',
     },
 
     home:function(){
         clearPageData();
         var Index=require('../source/mall/index/index');
         new Index({el:fresh.$content});
-    },
-    st:function(){
-        alert('st');
     }
 });
