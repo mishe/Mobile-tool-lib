@@ -1,0 +1,23 @@
+{
+  "name": "freshFE-H5",
+  "version": "0.1.0",
+  "description": "两鲜移动端重构项目",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node build.js --debug",
+    "debug": "node build.js --build-debug",
+    "release": "node build.js --build-release"
+  },
+  "author": "caihua.chen",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.15.6",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
+    "html-clean-loader": "^1.0.0",
+    "html-loader": "^0.3.0",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.10.5",
+    "webpack-dev-server": "^1.10.1"
+  }
+}

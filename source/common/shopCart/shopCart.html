@@ -1,0 +1,37 @@
+<div class="shop-cart">
+    <div class="shop-cart-head">购物车</div>
+    <div class="shopping-tip animate <%=(count.count!=0 && count.count<100)?'':'shopping-tip2'%>">
+        <span class="shopping-tip-a">去凑单</span>
+        <span class="shopping-tip-b">包邮</span>
+        全场满100包邮，还差<span class="shopping-tip-c"><%=(100-count.count)%></span>元
+    </div>
+    <div class="animate product-list-box product-list-box<%=(count.count!=0 && count.count<100)?'1':'2'%>">
+        <ul>
+            <% _.each(data,function(d){ %>
+                <li data-id="<%=d.id%>" class="<%=d.selected?'selected':''%>">
+                    <img class="cart-product-img" src="<%=d.pic%>">
+                    <div class="cart-product-info">
+                        <span class="cart-product-title"><%=d.name%> <span class="product-spec"><%=d.standard%></span></span>
+                        <span class="cart-product-price">¥<%=d.price%></span>
+                        <div class="cart-product-num">
+                            <span class="add-cart-less"></span>
+                            <span class="add-cart-more"></span>
+                            <span class="add-cart-num"><%=d.num%></span>
+                        </div>
+                        <span class="product-del-btn"></span>
+                    </div>
+            <% }); %>
+        </ul>
+        <ul class="patch-goods">
+13123123123
+        </ul>
+    </div>
+    <div class="fixed-bottom">
+        <div class="product-count-info">
+            <span class="select-all <%=(count.selectAll==1 && count.count!=0)?'selected':''%>">全选</span>
+            <span class="save-price">已优惠：¥<%=count.discount%></span>
+            <span class="count-price">合计：¥<%=count.count%></span>
+        </div>
+        <div class="checkout-btn">结账</div>
+    </div>
+</div>

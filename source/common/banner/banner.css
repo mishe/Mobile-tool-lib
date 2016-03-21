@@ -1,0 +1,6 @@
+.bannerSlider{position:relative;width:100%;overflow:hidden;margin-bottom:10px}
+.bannerSlider .animate li{float:left;width:100%}
+.bannerSlider img{width:100%;height:auto}
+.bannerSlider .pages{position:absolute;width:100%;text-align:center;bottom:10px;z-index:2;height:9px;}
+.bannerSlider .pages li{display:inline-block;margin:0  5px 5px 0;width:4px;height:4px;background:#cfccc3;border-radius:2px; vertical-align: middle;}
+.bannerSlider .pages li.active{background:#72c570}

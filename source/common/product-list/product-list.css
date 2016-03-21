@@ -1,0 +1,10 @@
+.product-box li{float:left;width:50%;margin-bottom:16px;text-align:center}
+.product-box img{width:100%;height:auto}
+.product-box .product-title{display:block;height:25px;line-height:25px;font-size:14px;overflow:hidden}
+.product-box .product-price{color:#f00}
+.product-box .product-price del{color:#999;text-decoration:line-through;padding-left:4px}
+.product-box .add-cart-btn{display:block;margin:4px auto 0;width:130px;height:36px;text-align:center;font-size:14px;line-height:36px;border-radius:10px;background:#ffec43}
+.product-box .add-cart-less,
+.product-box .add-cart-more{float:left;width:36px;height:36px;border:1px solid #000;}
+.product-box .add-cart-more{float:right}
+.product-box .add-cart-num{display:block;text-align:center}

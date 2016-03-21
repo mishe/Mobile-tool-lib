@@ -1,0 +1,21 @@
+<div class="my-exclusive">
+    <h3 class="index-h3-title">此刻我的专享</h3>
+    <div class="product-box">
+        <ul class="clearfix">
+            <% _.each(data,function(d){ %>
+                <li data-link="/product/<%=d.product_id%>">
+                    <img src="<%=d.image%>">
+                    <span class="product-title"><%=d.name%></span>
+                    <span class="product-price">¥<%=d.special_price%><del>¥<%=d.price%></del></span>
+                    <div class="add-cart-btn" data-standard="<%=d.standard2%>" data-type="<%=d.type%>" data-id="<%=d.product_id%>" data-name="<%=d.name%>" data-price="<%=d.special_price%>" data-pic="<%=d.image%>" data-spec="<%=d.price%>">加入购物车</div>
+                </li>
+
+            <% }) %>
+        </ul>
+        <% if(count-2>0){ %>
+        <div class="my-exclusive-more" data-link="">
+            还有<%=count-2%>款专享产品
+        </div>
+        <% } %>
+    </div>
+</div>

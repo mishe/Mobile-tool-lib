@@ -1,0 +1,43 @@
+.shop-cart-box{position:fixed;
+    z-index: 11;
+    top:0;left:100%;height:100%;
+    width:100%;
+    background:rgba(0,0,0,0.6);
+}
+.shop-cart{
+    margin-left:10%;
+    width:90%;
+    background:#fff;
+}
+.shop-cart .shop-cart-head{height:50px;line-height:50px;text-align:center;font-size:18px;font-weight:bold}
+.shop-cart .shopping-tip{height:40px;line-height:40px;padding:0 12px;background:#fffbd9}
+.shop-cart .shopping-tip2{height:0;overflow:hidden}
+.shop-cart .shopping-tip-a{float:right;color:#999}
+.shop-cart .shopping-tip-b{color:#f00;border:1px solid #f00;padding:3px 5px;border-radius:10px;margin-right:5px}
+.shop-cart .product-list-box{position:absolute;top:90px;bottom:90px;overflow:auto;width:90%}
+.shop-cart .product-list-box2{top:50px}
+.shop-cart li{position:relative;padding:10px 16px;height:110px;background:#f8f6f7;margin-bottom:10px}
+.shop-cart li:before{content:'';position:absolute;top:49px;left:8px;width:12px;height:12px;background:#ffec43;border-radius:50%}
+.shop-cart li.selected:before{content:'v'}
+.shop-cart .cart-product-img{position:absolute;width:90px;height:90px;margin-left:12px}
+.shop-cart .cart-product-info{width:100%;padding-left:115px}
+.shop-cart .cart-product-title{font-size:12px;display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;}
+.shop-cart .cart-product-price{display:block;color:#f00;font-size:14px;font-weight:bold}
+.shop-cart .cart-product-num{position:absolute;top:68px;left:125px;line-height:30px;
+    width:100px;height:30px;background:#fff;border-radius:20px}
+.shop-cart .add-cart-less,
+.shop-cart .add-cart-more{float:left;width:30px;height:30px;border:1px solid #000;}
+.shop-cart .add-cart-more{float:right}
+.shop-cart .add-cart-num{display:block;text-align:center}
+.shop-cart .product-del-btn{position:absolute;top:60px;right:10px;width:40px;height:40px;border:1px solid #000}
+.shop-cart .fixed-bottom{position:absolute;bottom:0;height:90px;width:90%}
+.shop-cart .product-count-info{height:40px;background:#fffbd9;text-align:right;line-height:40px;padding:0 6px}
+.shop-cart .select-all{float:left}
+.shop-cart .select-all:before{content:'';display:inline-block;margin-right:5px;width:12px;height:12px;background:#ffec43;border-radius:50%}
+.shop-cart .select-all.selected:before{content:'v'}
+.shop-cart .save-price{color:#999}
+.shop-cart .count-price{color:#f00;font-weight:bold}
+.checkout-btn{height:50px;background:#ffe243;text-align:center;font-size:16px;font-weight:bold;line-height:50px}
