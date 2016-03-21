@@ -30,7 +30,11 @@ module.exports = function (options, callback) {
         $parent.on('touchstart', function (e) {
             oldDate = new Date();
             starty = e.originalEvent.touches[0].clientY;
-            startX = e.originalEvent.touches[0].clientX - $this.offset().left;
+            if (!options.move) {
+                startX = e.originalEvent.touches[0].clientX;
+            } else {
+                startX = e.originalEvent.touches[0].clientX - $this.offset().left;
+            }
         });
         $parent.on('touchmove', function (e) {
             endTy = e.originalEvent.touches[0].clientY || e.originalEvent.changedTouches[0].clientY;
