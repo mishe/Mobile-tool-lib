@@ -40,9 +40,12 @@ img{display:block}
 .loading{margin:15px auto;font-size: 4px;position: relative;text-indent: -9999em;border: 0.5em solid rgba(0, 0, 0, 0.1);border-left-color:#ccc;-webkit-animation: empty_loading 1.1s infinite linear;animation: empty_loading 1.1s infinite linear}
 .loading,
 .loading:after{border-radius: 50%;width:20px;height:20px}
-.pull_refresh_loading{display:none;margin:8px auto;font-size: 4px;position: relative;text-indent: -9999em;border: 0.5em solid rgba(0, 0, 0, 0.1);border-left-color:#ccc;-webkit-animation: empty_loading 1.1s infinite linear;animation: empty_loading 1.1s infinite linear}
-.pull_refresh_loading,
-.pull_refresh_loading:after{border-radius: 50%;width:30px;height:30px}
+/*.pull-refresh{display:none;margin:8px auto;font-size: 4px;position: relative;text-indent: -9999em;border: 0.5em solid rgba(0, 0, 0, 0.1);border-left-color:#ccc;-webkit-animation: empty_loading 1.1s infinite linear;animation: empty_loading 1.1s infinite linear}*/
+/*.pull-refresh,*/
+/*.pull-refresh:after{border-radius: 50%;width:30px;height:30px}*/
+
+.pull-refresh{display:none;background:#f8f8f8 url(pullRefresh.png) no-repeat 0 bottom;background-size:100% auto;}
+
 
 .change_page_loading{display:none;position:fixed;background:#fff;top:50%;left:50%;width:60px;height:60px;margin:-30px 0 0 -30px;box-shadow:0 0 4px rgba(0,0,0,0.2);border-radius:50%}
 .change_page_loading .page_loading{margin:15px auto;font-size: 4px;position: relative;text-indent: -9999em;border: 0.5em solid #44b336;border-left-color:#ccc;-webkit-animation: empty_loading 1.1s infinite linear;animation: empty_loading 1.1s infinite linear}

@@ -4,25 +4,29 @@ module.exports = function (options, callback) {
             offsetY: 75,             //触摸起止Y偏移值，大于些值才会触发下拉事件
             pullTipBox:'.pull-refresh',
             pullMoving: function (moveNum) {
-                $(this.pullTipBox).html('释放即可刷新_'+moveNum)
+                $(this.pullTipBox).show().css('height',moveNum);
+                //$(this.pullTipBox).html('释放即可刷新_'+moveNum)
             },
             pullRefresh: function () {
                 var obj=$(this.pullTipBox)
-                obj.html('加载中...')
+                obj.slideUp();
+                //obj.html('加载中...')
                 setTimeout(function(){
-                    obj.html('');
+                    //obj.html('');
                 },500);
             },
             pullCancel: function (el) {
-                var obj=$(this.pullTipBox)
-                obj.html('下拉取消...')
+                var obj=$(this.pullTipBox);
+                obj.slideUp();
+                //obj.html('下拉取消...')
                 setTimeout(function(){
-                    obj.html('');
+
+                    //obj.html('');
                 },500);
             }
         },
         pushed=false;
-
+    options=options||{};
     cfg = $.extend(cfg, options);
 
     this.each(function () {

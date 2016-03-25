@@ -8,6 +8,9 @@ module.exports=function css3Hack(key,value){
         return d;
     }
     $(this).each(function(){
-        $(this).css(ch(key,value));
+        var self=$(this)
+        setTimeout(function(){
+            self.css(ch(key,value));
+        },0)
     });
 }

@@ -1,4 +1,4 @@
-var ShopCart=require('../source/common/shopCart/shopCart'),
+var ShopCart=require('../source/mall/shopCart/shopCart'),
     MainNav=require('../source/common/mainNav/mainNav');
 $.extend({
     checkNetwork: function () {
@@ -41,6 +41,9 @@ $.extend({
     charLen: function (string) {
         if (!string) return 0;
         return string.replace(/[^\x00-\xff]/g, '00').length;
+    },
+    isMobileNum:function(num){
+        return !isNaN(num) && /^1[3|5|7|8]\d{9}$/.test(num);
     },
     setCache:function(key,value,exp,type){
         //过期时间默认1天
@@ -164,15 +167,37 @@ $.extend({
     sync:require('./unit/sync'),
     upload:require('./unit/upload'),
     fullSlider:require('./unit/fullSlider/fullSlider'),
-    showShopCart:function(){
+    showShopCart:function(callback){
         if(!fresh.$main.find('#shopCart').length)
             fresh.$main.append('<div id="shopCart" class="shop-cart-box animate"></div>');
-        new ShopCart({el:fresh.$main.find('#shopCart')});
+        new ShopCart({el:fresh.$main.find('#shopCart'),callback:callback});
     },
-    showMainNav:function(){
+    showMainNav:function(callback){
         if(!fresh.$main.find('#showMainNav').length)
             fresh.$main.prepend('<div id="showMainNav" class="main-nav-box animate"></div>');
-        new MainNav({el:fresh.$main.find('#showMainNav')});
+        new MainNav({el:fresh.$main.find('#showMainNav'),callback:callback});
+    },
+    showShopCartNum:function(cart){
+        var num=0;
+        cart=cart|| $.getCache('cart',1);
+        _.each(cart,function(d){
+            if(d.num>0)
+                num+= parseInt(d.num);
+        });
+        $('.shopping-cart-bubble').html(num);
+    },
+    login:function(){
+        var hash=location.hash.substr(1);
+        $.changePage('user/login/?backUrl='+hash);
+    },
+    register:function(){
+        var hash=location.hash.substr(1);
+        $.changePage('user/register/?backUrl='+hash);
+    },
+    getParam: function(str,key){
+        var reg = new RegExp(key +"=([^&]*)(&|$)");
+        var r = str.match(reg);
+        if (r!=null) return unescape(r[1]); return null;
     }
 });
 

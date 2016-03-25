@@ -23,7 +23,7 @@ window.fresh = {
         this.$bubble = $('#bubble');
         var Router = require('./router.js');
         window.fresh.router = new Router;
-        Backbone.history.start({pushState: true});
+        Backbone.history.start({pushState: false});
         //var footer = require('../source/common/footer/footer');
         //new footer({el: $footer});
     }

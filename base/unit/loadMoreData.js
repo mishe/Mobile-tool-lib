@@ -51,7 +51,7 @@ module.exports = function (options) {
     }
     $(window).on('scroll.' + uniqID, function () {
         var offset = document.body.scrollTop;
-        if (offset + windowHeight + opt.padding > $content.height() && !loading) {
+        if (offset + windowHeight + opt.padding > fresh.$content.height() && !loading) {
             loading = true;
             loadData();
         }

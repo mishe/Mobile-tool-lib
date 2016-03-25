@@ -107,6 +107,9 @@ module.exports = function (options, callback) {
             if (-moveX < -(childsWidth - wrapWidth)) {
                 moveX = childsWidth - wrapWidth;
             }
+            if(moveX<wrapWidth){
+                moveX=0;
+            }
             $this.setTransitionTime(0);
             $this.translate3d(-moveX);
             oldX = -moveX;

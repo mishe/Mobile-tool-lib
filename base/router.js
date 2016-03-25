@@ -30,8 +30,14 @@ module.exports=Backbone.Router.extend({
 
     routes:{
         '':                             'home',
+        'subjects/*':                   'subjects',
+        'subject/:subjectID/*':         'subjects',
+        'cate/:cateID/*':               'category',
         'cate/:cateID/:subCateID':      'category',
+        'search/*':                     'search',
+        'search/:key/*':                'search',
         'product/*':                    'productDetail',
+
 
         'user/*':                       'userCenter',
         'user/account/*':               'myAccount',
@@ -51,15 +57,57 @@ module.exports=Backbone.Router.extend({
         'user/comment/*':               'myComment',
         'user/shopCart/*':              'shopCart',
         'user/login/*':                 'login',
+        'user/smslogin/*':              'smsLogin',
         'user/login/weChat/*':          'weChatLogin',
         'user/register/*':              'register',
         'user/register/weChat*':        'weChatRegister',
         'user/forgot/*':                'forgot',
+        'user/reset/*':                 'reset'
+
     },
 
     home:function(){
         clearPageData();
         var Index=require('../source/mall/index/index');
         new Index({el:fresh.$content});
+    },
+    subjects:function(subjectID){
+        clearPageData();
+        var Subjects=require('../source/mall/subjects/subjects');
+        new Subjects({el:fresh.$content,subjectID:subjectID});
+    },
+    category:function(cateID,subCateID){
+        clearPageData();
+        var Category=require('../source/mall/category/category');
+        new Category({el:fresh.$content,cateID:cateID,subCateID:subCateID});
+    },
+    search:function(key){
+        clearPageData();
+        var Search=require('../source/mall/search/search');
+        new Search({el:fresh.$content,key:key});
+    },
+
+
+
+    login:function(){
+        var Login=require('../source/passport/login/login');
+        new Login({el:fresh.$content});
+    },
+    smsLogin:function(){
+        var Login=require('../source/passport/login/login');
+        new Login({el:fresh.$content,sms:true});
+    },
+    register:function(){
+        var Register=require('../source/passport/register/register');
+        new Register({el:fresh.$content});
+    },
+    forgot:function(){
+        var Register=require('../source/passport/forgot/forgot');
+        new Register({el:fresh.$content});
+    },
+    reset:function(){
+        var Reset=require('../source/passport/reset/reset');
+        new Reset({el:fresh.$content});
     }
+
 });

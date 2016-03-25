@@ -30,7 +30,7 @@ module.exports = function (pageObj, autoscroll) {
 
         slideObj.translate3d(-(slideCurPage - 1) * slideWidth);
         pageObj.eq(slideCurPage - 1).addClass('active').siblings().removeClass('active');
-        //            console.log(slideCurPage,countPage,dx);
+        //console.log(slideCurPage, countPage, dx);
         autoScrollBanner();
     };
 
