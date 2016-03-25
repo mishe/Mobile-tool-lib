@@ -28,7 +28,7 @@ var webpack = require("webpack"),
         },
         output: {
             path: __dirname + "/dist/" ,
-            filename: pkg.version+"/bundle" + (build_realse ? ".min.js" : ".js")
+            filename: "bundle_" +pkg.version+ (build_realse ? ".min.js" : ".js")
         },
         module: {
             loaders: [
@@ -42,11 +42,11 @@ var webpack = require("webpack"),
                 },
                 {
                     test: /\.(png|jpg|svg|gif|eot|woff|ttf)$/,
-                    loader: 'file-loader?name=[path]/[hash:8].[ext]'
+                    loader: 'file-loader?name=[path][hash:8].[ext]'
                 }]
         }
         , plugins: [
-            new ExtractTextPlugin(pkg.version+"/bundle" + (build_realse ? ".min.css" : ".css"))
+            new ExtractTextPlugin("bundle_" +pkg.version+ (build_realse ? ".min.css" : ".css"))
         ]
     },
     compiler, server;
@@ -65,7 +65,8 @@ compiler = webpack(_config);
 if (debug) {
     server = new dev_server(compiler, {
         hot: true,
-        stats: { colors: true },
+        inline:true,
+        stats: { colors: true }
     });
     server.listen(8080, "127.0.0.1", function () {
 
