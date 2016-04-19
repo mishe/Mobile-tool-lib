@@ -1,0 +1,17 @@
+<div class="choose-server-time-wrap">
+    <div class="choose-server-time">
+        <span class="close-btn"></span>
+        <h3>请选择服务时间</h3>
+        <div class="overslider pick-date-box">
+            <ul class="animate">
+                <% _.each(data,function(d,i){ %>
+                    <li class="pick-date" data-value="<%=d%>"><%=layout[i]%></li>
+                <% }) %>
+            </ul>
+        </div>
+        <div class="pick-time-box clearfix">
+            <ul>
+            </ul>
+        </div>
+    </div>
+</div>

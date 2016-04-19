@@ -1,4 +1,4 @@
-var ShopCart=require('../source/mall/shopCart/shopCart'),
+var ShopCart=require('../source/common/shopCart/shopCart'),
     MainNav=require('../source/common/mainNav/mainNav');
 $.extend({
     checkNetwork: function () {
@@ -198,7 +198,9 @@ $.extend({
         var reg = new RegExp(key +"=([^&]*)(&|$)");
         var r = str.match(reg);
         if (r!=null) return unescape(r[1]); return null;
-    }
+    },
+    timePicker:require('./unit/timePicker/timePicker')
+
 });
 
 
