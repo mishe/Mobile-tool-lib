@@ -4,12 +4,13 @@ var daysTemplate=_.template(require('./timePicker.html')),
 
 module.exports=function (opt, callback) {
         var options = {
+                contain:$('body'),
                 startDate: new Date(),
                 days: 14,
                 timeRange: '8:30-21:30',
                 sp: '-',
                 changeDay: function () {},
-                select:'2016/04/08 15:00'
+                selected:''
             },
             dayList = [],
             layoutDayList = [],
@@ -39,7 +40,7 @@ module.exports=function (opt, callback) {
 
 
         var obj = $(daysTemplate(showToday));
-        $('body').append(obj);
+        opt.contain.append(obj);
         var overSlider=obj.find('.animate').overSlide();
 
         if(opt.selected){
@@ -56,9 +57,11 @@ module.exports=function (opt, callback) {
         }
 
         function getStartDay(){
-            var endTime=opt.timeRange.split('-')[1].split(':');
-            endTime=endTime[1]?parseInt(endTime[0],10)+.5:parseInt(endTime[0],10)
-            if(Math.floor(new Date().getHours()) + 1>endTime){
+            var endTime=opt.timeRange.split('-')[1].split(':'),
+                hour=new Date().getHours();
+            endTime=endTime[1]?parseInt(endTime[0],10)+.5:parseInt(endTime[0],10);
+            hour=new Date().getMinutes()>=30?hour+.5:hour;
+            if(hour>=endTime){
                 return false;
             }
             return true;
@@ -69,7 +72,18 @@ module.exports=function (opt, callback) {
                 today=new Date();
             today=today.getFullYear() + opt.sp + n2s(today.getMonth() + 1) + opt.sp + n2s(today.getDate());
             if (day == today) {
-                times = getTimeList([Math.floor(new Date().getHours()) + 1])
+                var hour=new Date().getHours(),
+                    min=new Date().getMinutes(),
+                    start=opt.timeRange.split('-')[0].split(':');
+
+                if(hour<start[0]) {
+                    hour=start;
+                }else if(hour==start[0]){
+                    hour=min>30?[hour+1]:start;
+                }else{
+                    hour=min>30?[hour+1]:[hour,30];
+                }
+                times = getTimeList(hour);
             }
 
             obj.find('.pick-time-box ul').html(timeTemplate(times));
