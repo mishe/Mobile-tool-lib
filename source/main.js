@@ -1,9 +1,9 @@
-window.underscore=window._=require('./libs/underscore.js');
-window.Backbone=require('./libs/backbone.js');
-window.store = require('./libs/store');
-require('./base.css');
-require('./helper');
-require('./libs/touch');
+window.underscore=window._=require('./../component/underscore.js');
+window.Backbone=require('./../component/backbone.js');
+window.store = require('./../component/store');
+require('./base/base.css');
+require('./../component/helper');
+require('./../component/touch');
 
 window.fresh = {
     cache: {},

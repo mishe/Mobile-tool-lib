@@ -143,12 +143,12 @@ $.extend({
     checkUser:function(){
 
     },
-    customEvent:require('./unit/customEvent'),
-    toast:require('./unit/toast/toast') ,
-    parseURL:require('./unit/parseUrl'),
-    dateFormat: require('./unit/dateFormat'),
-    popWindow:require('./unit/popWindow/popWindow'),
-    loadMoreData:require('./unit/loadMoreData'),
+    customEvent:require('./customEvent'),
+    toast:require('./toast/toast') ,
+    parseURL:require('./parseUrl'),
+    dateFormat: require('./dateFormat'),
+    popWindow:require('./popWindow/popWindow'),
+    loadMoreData:require('./loadMoreData'),
     //没有更多列表统一处理
     hasNotMoreData:function(obj,hasData,notDataText){
         if(hasData){
@@ -160,13 +160,13 @@ $.extend({
             },3000);
         }
     },
-    praiseAction:require('./unit/praiseAction'),
-    login:require('./unit/login/login'),
-    register:require('./unit/register/register'),
-    shareWeixinTip:require('./unit/shareWeixinTip/shareWeixinTip'),
-    sync:require('./unit/sync'),
-    upload:require('./unit/upload'),
-    fullSlider:require('./unit/fullSlider/fullSlider'),
+    praiseAction:require('./praiseAction'),
+    login:require('./login/login'),
+    register:require('./register/register'),
+    shareWeixinTip:require('./shareWeixinTip/shareWeixinTip'),
+    sync:require('./sync'),
+    upload:require('./upload'),
+    fullSlider:require('./fullSlider/fullSlider'),
     showShopCart:function(callback){
         if(!fresh.$main.find('#shopCart').length)
             fresh.$main.append('<div id="shopCart" class="shop-cart-box animate"></div>');
@@ -199,13 +199,13 @@ $.extend({
         var r = str.match(reg);
         if (r!=null) return unescape(r[1]); return null;
     },
-    timePicker:require('./unit/timePicker/timePicker')
+    timePicker:require('./timePicker/timePicker')
 
 });
 
 
 $.extend($.fn, {
-    css3Hack:require('./unit/css3Hack'),
+    css3Hack:require('./css3Hack'),
     translate3d: function (x, y, z) {
         x = x || 0, y = y || 0, z = z || 0;
         $(this).css3Hack('transform','translate3d(' + x + 'px,' + y + 'px,' + z + 'px)');
@@ -219,9 +219,9 @@ $.extend($.fn, {
         })
     },
     //整体滚动
-    overSlide: require('./unit/overSlider/overSlider'),
+    overSlide: require('./overSlider/overSlider'),
     //单个滚动
-    bannerSlider:require('./unit/overSlider/bannerSlider'),
-    pullRefresh:require('./unit/pullRefresh'),
+    bannerSlider:require('./overSlider/bannerSlider'),
+    pullRefresh:require('./pullRefresh'),
     addCart:require('../source/common/addCart/addCart')
 });

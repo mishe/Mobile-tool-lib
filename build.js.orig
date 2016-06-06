@@ -1,4 +1,4 @@
-﻿var webpack = require("webpack"),
+var webpack = require("webpack"),
     dev_server = require("webpack-dev-server"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     args = process.argv,
@@ -24,7 +24,11 @@
 
     _config = {
         entry:{
+<<<<<<< HEAD
             app:['./source/main.js']
+=======
+            app:['./base/main.js']
+>>>>>>> 2399c89c6206ab7511d7052054f141ba0dea8427
         },
         output: {
             path: __dirname + "/dist/" ,
