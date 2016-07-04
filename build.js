@@ -52,7 +52,7 @@
     compiler, server;
 
 if (debug) {
-    _config.devtool= 'source-map';
+    _config.devtool= 'cheap-module-source-map';
     _config.entry.app.push('webpack/hot/dev-server');
     _config.entry.app.push('webpack-dev-server/client?http://127.0.0.1:8080');
     _config.plugins.push(new webpack.HotModuleReplacementPlugin());
