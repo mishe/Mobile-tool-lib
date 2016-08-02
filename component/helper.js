@@ -99,7 +99,7 @@ $.extend({
     },
     getLimitString: function (str, limit) {
         var pos = 0;
-        if (!limit || $.charlen(str) <= limit) return str;
+        if (!limit || $.charLen(str) <= limit) return str;
         for (var i = 0; i < str.length; i++) {
             pos += str.charCodeAt(i) > 255 ? 2 : 1;
             if (limit <= pos) {
