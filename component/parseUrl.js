@@ -20,16 +20,6 @@ module.exports = function parseUrl (url) {
                 var reg = new RegExp(key +"=([^#&]*)",'i');
                 var r = a.search.match(reg);
                 if (r!=null) return unescape(r[1]); return null;
-            },
-            getAll:function(){
-                var ret = {},
-                    seg = a.search.replace(/^\?/, '').split('&'),
-                    len = seg.length, i = 0, s;
-                for (; i < len; i++) {
-                    s = seg[i].split('=');
-                    ret[s[0]] = s[1];
-                }
-                return ret;
             }
         }
     };
