@@ -29,7 +29,7 @@ module.exports = function (options, callback) {
         $this.addClass('bindedEvent').css('width', childsWidth);
         $parent.on('touchstart', function (e) {
             oldDate = new Date();
-            starty = e.originalEvent.touches[0].pageX;
+            starty = e.originalEvent.touches[0].pageY;
             if (!options.move) {
                 startX = e.originalEvent.touches[0].pageX;
             } else {
