@@ -473,10 +473,18 @@ $.extend($.fn, {
     css3Hack:require('./css3Hack'),
     translate3d: function (x, y, z) {
         x = x || 0, y = y || 0, z = z || 0;
-        $(this).css3Hack('transform','translate3d(' + x + 'px,' + y + 'px,' + z + 'px)');
+        $(this).css({
+            "-webkit-transform": "translate3d(" + x + "px," + y + "px," + z + "px)",
+            "-moz-transform": "translate3d(" + x + "px," + y + "px," + z + "px)",
+            transform: "translate3d(" + x + "px," + y + "px," + z + "px)"
+        })
     },
     setTransitionTime: function (num) {
-        $(this).css3Hack('transition',num+'s');
+        $(this).css({
+            "-webkit-transition": +num + "s",
+            "-moz-transition": +num + "s",
+            transition: +num + "s"
+        })
     },
     overSlides: function (callback) {
         $(this).each(function () {
