@@ -1,0 +1,7 @@
+/*fullSlider*/
+.full_slider{position:fixed;top:0;right:0;left:0;bottom:0;background:#000;display:table;height:100%;z-index:999999;-webkit-transition:.3s ease-in-out;transition:.3s ease-in-out}
+.full_slider li{display:table-cell;vertical-align:middle;height:100%;text-align:center}
+.full_slider_pages{position:fixed;bottom:20px;text-align:center;width:100%;z-index:9999999}
+.full_slider_pages li{display:inline-block;width:6px;height:6px;border-radius:3px;background:#333;margin-left:3px}
+.full_slider_pages li.active{background:#fff}
+
