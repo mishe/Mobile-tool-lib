@@ -21,18 +21,63 @@ module.exports = function (options) {
             data: opt.data,
             dataType:'json',
             timeout:opt.timeout,
+            headers:{
+                logintoken:$.getToken()
+            },
             success:function(d){
-                if (opt.loading) $(opt.loading).hide();
-                if (d.result == 1) {
+                $('.loading-refresh').hide();
+                if(d.status==-1){
+                    localStorage.clear();
+                    $.changePage('login');
+                    $.popWindow({
+                        content:'账号在异地登录，若非本人操作请修改密码！',
+                        type:'2',
+                        yes:'确定',
+                        no:'取消',
+                        callback:function(bl){
+                            if(bl){
+                                console.log('登录')
+                            }else{
+                                history.go(-1);
+                            }
+                        }
+                    });
+                    return true;
+                }else if(d.status==-2){
+                    $.popWindow({
+                        content:'您的请求无效！',
+                        type:'2',
+                        yes:'确定',
+                        callback:function(bl){
+                            if(bl){
+                                history.go(-1);
+                            }
+                        }
+                    });
+                    return true;
+                }else if(d.status==-3){
+                    $.popWindow({
+                        content:'维护时间段，某些操作无法进行！',
+                        type:'2',
+                        yes:'确定',
+                        callback:function(bl){
+                            if(bl){
+                                history.go(-1);
+                            }
+                        }
+                    });
+                    return true;
+                }
+                if (d.status == 0) {
                     opt.success && opt.success(d.data);
                 } else if (opt.error && $.type(opt.error) === 'function') {
                     opt.error(d);
                 } else {
-                    $.toast(d.message, 500);
+                    $.toast(d.msg, 1000);
                 }
             },
             error:function(d){
-                if (opt.loading) $(opt.loading).hide();
+                $('.loading-refresh').hide();
                 if (opt.error && $.type(opt.error) === 'function') {
                     opt.error(d);
                 }else {
@@ -40,7 +85,7 @@ module.exports = function (options) {
                 }
             }
         };
-        if (opt.loading) $(opt.loading).show();
+        $('.loading-refresh').show();
         $.ajax(data);
     }
-}
+};

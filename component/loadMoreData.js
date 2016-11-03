@@ -1,9 +1,10 @@
-module.exports = function (options) {
+﻿module.exports = function (options) {
     var defaultSetting = {
             loading: '.loading',
             padding: 200,
             url: '',
             loadFirstPage: false,
+            type:'get',
             data: {
                 start: 1,
                 limit: 10,
@@ -17,21 +18,29 @@ module.exports = function (options) {
         windowHeight = $(window).height(),
         loading = false,
         uniqID = $.uniqID(),
-        curPage = opt.data.start;
+        curPage = typeof opt.data.currentPage != "undefined" ? opt.data.currentPage : opt.data.page;
 
     function loadData() {
-        opt.data.start = curPage;
+        opt.data.currentPage = curPage;
+        opt.data.page = curPage;
+        
         var data = {
             url: opt.url,
-            type: 'get',
+            type: opt.type,
             contentBox: '',
             data: opt.data,
             success: function (d) {
                 var hasMore = true;
-                if (!d || Math.ceil(d.totalCount / opt.data.limit) <= curPage) {
+                if(d && d.data && d.data.salOfList){
+                    if (!d || Math.ceil(d.totalCount / opt.data.limit) <= curPage||d.data.salOfList.length==0) {
+                        $(window).off('scroll.' + uniqID);
+                        hasMore = false;
+                    }
+                }else if(d && d.list && d.list.length < opt.data.count){
                     $(window).off('scroll.' + uniqID);
-                    hasMore = false;
+                     hasMore = false;
                 }
+                
                 curPage += 1;
                 loading = false;
                 opt.success(d, hasMore);
@@ -61,4 +70,4 @@ module.exports = function (options) {
             $(window).off('scroll.' + uniqID);
         }
     };
-}
+};

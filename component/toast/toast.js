@@ -16,16 +16,16 @@ module.exports = function (msg, interval, site) {
         setTimeout(function () {
             $('#' + id).remove();
         }, 200);
-    }
+    };
 
     if (interval !== false)
         setTimeout(function () {
             close();
-        }, interval || 1500);
+        }, interval || 2000);
 
     return {
         close: function () {
             close();
         }
     };
-}
+};

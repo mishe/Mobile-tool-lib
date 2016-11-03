@@ -360,7 +360,7 @@ _.extend(Router.prototype, Events, {
         var router = this;
 
         Backbone.history.route(route, function (fragment) {
-            //route before 陈材华添加
+            //route before
             router._beforeRoute && router._beforeRoute(name);
             var args = router._extractParameters(route, fragment);
             if (router.execute(callback, args, name) !== false) {
