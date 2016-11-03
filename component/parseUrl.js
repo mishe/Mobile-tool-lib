@@ -1,29 +1,26 @@
-module.exports = function (url) {
+module.exports = function parseUrl (url) {
+    if(window.URL){
+        return new window.URL(url);
+    }
     var a = document.createElement('a');
     a.href = url;
     return {
-        source: url,
-        protocol: a.protocol.replace(':', ''),
-        host: a.hostname,
+        hash: a.hash,
+        host: a.host,
+        hostname: a.hostname,
+        href:url,
+        origin:a.origin,
+        password:a.password,
+        pathname:a.pathname,
         port: a.port,
-        query: a.search,
-        params: (function () {
-            var ret = {},
-                seg = a.search.replace(/^\?/, '').split('&'),
-                len = seg.length, i = 0, s;
-            for (; i < len; i++) {
-                if (!seg[i]) {
-                    continue;
-                }
-                s = seg[i].split('=');
-                ret[s[0]] = s[1];
+        protocol: a.protocol,
+        search: a.search,
+        searchParams:{
+            get:function(key){
+                var reg = new RegExp(key +"=([^#&]*)",'i');
+                var r = a.search.match(reg);
+                if (r!=null) return unescape(r[1]); return null;
             }
-            return ret;
-        })(),
-        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1],
-        hash: a.hash.replace('#', ''),
-        path: a.pathname.replace(/^([^\/])/, '/$1'),
-        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1],
-        segments: a.pathname.replace(/^\//, '').split('/')
+        }
     };
 }

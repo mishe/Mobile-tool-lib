@@ -29,26 +29,27 @@ module.exports = function (options, callback) {
         $this.addClass('bindedEvent').css('width', childsWidth);
         $parent.on('touchstart', function (e) {
             oldDate = new Date();
-            starty = e.originalEvent.touches[0].clientY;
+            starty = e.originalEvent.touches[0].pageY;
             if (!options.move) {
-                startX = e.originalEvent.touches[0].clientX;
+                startX = e.originalEvent.touches[0].pageX;
             } else {
-                startX = e.originalEvent.touches[0].clientX - $this.offset().left;
+                startX = e.originalEvent.touches[0].pageX - $this.offset().left;
             }
         });
         $parent.on('touchmove', function (e) {
-            endTy = e.originalEvent.touches[0].clientY || e.originalEvent.changedTouches[0].clientY;
-            endX = e.originalEvent.touches[0].clientX || e.originalEvent.changedTouches[0].clientX;
+            endTy = e.originalEvent.changedTouches[0].pageY;
+            endX = e.originalEvent.changedTouches[0].pageX;
 
-            dx = Math.abs(endX - startX);
-            dy = Math.abs(endTy - starty);
+            dx = endX - startX;
+            dy = endTy - starty;
+            var dx2 = Math.abs(dx),
+                dy2 = Math.abs(dy);
+
             //竖向拖动不阻止默认事件
-            if ((dy > dx || dy > 10 ) || dx < minMove) {
+            if ((dy2 > dx2 || dy2 > 10 ) || dx2 < minMove) {
                 return;
             }
             event.preventDefault();
-            dx = endX - startX;
-            dy = endTy - starty;
             if (options.move !== false) {
                 $this.setTransitionTime(0);
                 $this.translate3d(dx);
@@ -57,12 +58,14 @@ module.exports = function (options, callback) {
 
         $parent.on('touchend', function (e) {
             var newDate = new Date();
+
             if ((dx < 12 || dx > -12) && (dy > -12 || dy < 12) && newDate - oldDate < 200 && options.tap) {
                 oldDate = newDate;
                 $parent.trigger('tap');
             }
             var offleft = $this.offset().left;
             $this.setTransitionTime(0.3);
+
             if (offleft > 0) {
                 $this.translate3d(0);
             }

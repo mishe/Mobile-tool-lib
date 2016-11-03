@@ -8,13 +8,7 @@ require('./../component/touch');
 window.fresh = {
     cache: {},
     loadDate: 0,
-    cfg:{
-        upload:'',
-        batch:'',
-        passport:''
-    },
-    userInfo: {
-    },
+    apiRoot:'',
     init: function () {
         this.$body = $('body');
         this.$main = $('#mainPage');
@@ -30,15 +24,4 @@ window.fresh = {
 };
 $(function(){
     fresh.init();
-    var userInfo= $.getCache('userInfo',1);
-    if(userInfo){
-        $.sync({
-            url:'',
-            type:'get',
-            success:function(d){
-                $.setCache('userInfo',d,0,1);
-            }
-        });
-    }
-
 });
