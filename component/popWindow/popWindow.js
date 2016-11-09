@@ -47,6 +47,8 @@ module.exports=function (options) {
     //     $('body').off('tap.popWindow' + opt.uniqID);
     //     window.onpopstate=null;
     // };
+    var obj=win.find('.pop_window');
+    obj.css('margin-top',-obj.height()/2);
     $(window).on('popstate.popWindow'+ opt.uniqID,function(){
         win.remove();
         $('body').off('tap.popWindow' + opt.uniqID);
