@@ -1,4 +1,4 @@
-﻿$.extend({
+$.extend({
     checkNetwork: function () {
 //        if (navigator.onLine) {
 //            return true;
@@ -128,6 +128,11 @@
     },
     
     getParam: function(str,key){
+        if(arguments.length==1){
+            key=str;
+            str=location.href;
+        }
+
         var reg = new RegExp(key +"=([^#&]*)",'i');
         var r = str.match(reg);
         if (r!=null) return unescape(r[1]); return null;
