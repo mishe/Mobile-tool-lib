@@ -135,7 +135,7 @@ $.extend({
 
         var reg = new RegExp(key +"=([^#&]*)",'i');
         var r = str.match(reg);
-        if (r!=null) return unescape(r[1]); return null;
+        if (r!=null) return encodeURIComponent(r[1]); return null;
     },
     sendSMS:require('./sendSMS'),
     /*登录状态检索*/
