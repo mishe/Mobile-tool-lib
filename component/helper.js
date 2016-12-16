@@ -72,7 +72,7 @@ $.extend({
         // $.setAppTitle(title);
         // hack在微信IOS webview中无法修改document.title的情况
         if($.isWeixin() && $.isIOS()) {
-            var $iframe = $('<iframe src="https://static.91yaowang.com/yaowang/dist/source/mall/images/9e3e8cf0.png" style="border: 0;outline: 0"></iframe>');
+            var $iframe = $('<iframe src="/images/9e3e8cf0.png" style="border: 0;outline: 0"></iframe>');
             $iframe.on('load', function () {
                 setTimeout(function () {
                     $iframe.off('load').remove();
