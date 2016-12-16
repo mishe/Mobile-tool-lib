@@ -6,7 +6,6 @@ module.exports=function(){
             callback:function(){}
         },
         opt=$.extend(true,defaultSetting,opt),
-    //https://app.91yaowang.com/weizhan/pages/member/forgetPayPwd
         forgotUrl=location.origin + "/pages/member/forgetPayPwd",
         oldPassword,
         password=[],
