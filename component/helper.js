@@ -167,10 +167,12 @@ $.extend({
             $.changePage('login');
         }
     },
-    amountFormat:function(v) {
-        if(!v) return '0.00'
-        v = v.toString().split('.');
-        return (+v[0]).toLocaleString() + '.' + (v[1] >= 01 ? v[1] : '00');
+    amountFormat:function(v,symbol) {
+        if(!v) return '0.00';
+        v = parseFloat(v).toFixed(2);
+        var t = v.toString().split('.'),
+            sy=t[0].substr(0,1)=='-'?(t[0]==0?'-':''):(symbol==1?'+':'');
+        return sy+(+t[0]).toLocaleString() + '.' + (t[1] >= '01' ? t[1] : '00');
     },
     isIDCard:require('./isIDCard'),
     monthPicker:function(opt){
