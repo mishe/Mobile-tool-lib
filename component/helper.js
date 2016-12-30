@@ -132,10 +132,11 @@ $.extend({
             key=str;
             str=location.href;
         }
-
-        var reg = new RegExp(key +"=([^#&]*)",'i');
+        var reg = new RegExp('(\\w*'+key+')'+'=([^#&]*)','i');
         var r = str.match(reg);
-        if (r!=null) return encodeURIComponent(r[1]); return null;
+        if (r!=null && r[1]==key)
+            return decodeURIComponent(r[2])
+        return null;
     },
     sendSMS:require('./sendSMS'),
     /*登录状态检索*/
