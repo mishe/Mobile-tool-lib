@@ -19,9 +19,12 @@ module.exports = function (options, callback) {
     }
     childsWidth += options.padding;
     $child.each(function () {
-        childsWidth += $(this).outerWidth(true);
+        var width=$(this).outerWidth(true)
+        childsWidth += width;
+        $(this).css('width',width);
     });
     childsWidth += wrapPadding;
+    $child.css('width',$child.outerWidth(true));
 
     var _bindEvent = function () {
         var starty = startX = dx = dy = endTy = endTx = 0,
