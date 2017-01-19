@@ -24,13 +24,15 @@ img{display:block}
 .yellow{color:#ff9600}
 .red{color:#f00}
 
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder,
-input:-moz-placeholder,
-textarea:-moz-placeholder {color:#999}
+/* 改变placeholder的样式 */
+input::-webkit-input-placeholder { color: #888; }
+input:-moz-placeholder { color: #888; }
+input::-moz-placeholder { color: #888; }
+input:-ms-input-placeholder { color: #888; }
+input:placeholder { color: #888; }
 
 /* 修改chrome记住密码后自动填充表单的黄色背景 */
-input:-webkit-autofill {background: none;color: #000}
+input:-webkit-autofill {background: none;color: #fff}
 
 .noScroll{position:absolute;top:0;left:0;height:100%;width:100%;overflow:hidden}
 .center_middle{display:flex;justify-content:center;align-items:center}
