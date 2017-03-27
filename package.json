@@ -1,12 +1,12 @@
 {
-  "name": "freshFE-H5",
-  "version": "0.1.0",
-  "description": "两鲜移动端重构项目",
+  "name": "yaowang-weizhan",
+  "version": "2.10.0",
+  "description": "4.0",
   "main": "index.js",
   "scripts": {
     "dev": "node build.js --debug",
-    "debug": "node build.js --build-debug",
-    "release": "node build.js --build-release"
+    "test": "node build.js --test",
+    "prd": "node build.js --prd"
   },
   "author": "caihua.chen",
   "license": "ISC",
@@ -16,8 +16,13 @@
     "file-loader": "^0.8.4",
     "html-clean-loader": "^1.0.0",
     "html-loader": "^0.3.0",
+    "html-withimg-loader": "^0.1.16",
     "style-loader": "^0.12.3",
+    "url-loader": "^0.5.7",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.10.1"
+  },
+  "dependencies": {
+    "chunk-manifest-webpack-plugin": "^1.0.0"
   }
 }
