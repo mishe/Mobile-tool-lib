@@ -1,9 +1,10 @@
-﻿var webpack = require("webpack"),
+var webpack = require("webpack"),
     dev_server = require("webpack-dev-server"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     args = process.argv,
     debug = args.indexOf("--debug") > -1,
-    build_realse = args.indexOf("--build-release") > -1,
+    build_realse = args.indexOf("--prd") > -1,
+    build_test = args.indexOf("--test") > -1,
     pkg = require("./package.json"),
     logConfig = {
         hash: true,
@@ -27,8 +28,10 @@
             app:['./source/main.js']
         },
         output: {
-            path: __dirname + "/dist/" ,
-            filename: "bundle_" +pkg.version+ (build_realse ? ".min.js" : ".js")
+
+            path: __dirname + "/dist/",
+            filename: "bundle_" + pkg.version + (build_realse ? ".min.js" : ".js"),
+            chunkFilename:'chunk_[name]/[chunkhash:4].js'
         },
         module: {
             loaders: [
@@ -42,21 +45,25 @@
                 },
                 {
                     test: /\.(png|jpg|svg|gif|eot|woff|ttf)$/,
-                    loader: 'file-loader?name=[path][hash:8].[ext]'
+                    loader: 'url-loader?limit=50&name=[path][hash:8].[ext]'
                 }]
         }
         , plugins: [
-            new ExtractTextPlugin("bundle_" +pkg.version+ (build_realse ? ".min.css" : ".css"))
+            new ExtractTextPlugin("bundle_" + pkg.version + (!debug ? ".min.css" : ".css"))
         ]
     },
     compiler, server;
 
-if (debug) {
+if(debug){
     _config.devtool= 'cheap-module-source-map';
     _config.entry.app.push('webpack/hot/dev-server');
-    _config.entry.app.push('webpack-dev-server/client?http://127.0.0.1:8080');
+    _config.entry.app.push('webpack-dev-server/client?http://localhost:8088');
     _config.plugins.push(new webpack.HotModuleReplacementPlugin());
-} else if (build_realse) {
+}else if(build_test) {
+    _config.output.publicPath='https://...com/yaowang/dist/';
+    // _config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+}else if(build_realse) {
+    _config.output.publicPath='https://....com/yaowang/dist/';
     _config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
@@ -68,8 +75,7 @@ if (debug) {
         inline:true,
         stats: { colors: true }
     });
-    server.listen(8080, "127.0.0.1", function () {
-
+    server.listen(8088, "localhost", function () {
     });
 } else {
     compiler.run(function (err, status) {
