@@ -6,6 +6,7 @@ var webpack = require("webpack"),
     build_realse = args.indexOf("--prd") > -1,
     build_test = args.indexOf("--test") > -1,
     pkg = require("./package.json"),
+    ChunkManifestPlugin = require('chunk-manifest-webpack-plugin'),
     logConfig = {
         hash: true,
         version: false,
@@ -31,7 +32,7 @@ var webpack = require("webpack"),
 
             path: __dirname + "/dist/",
             filename: "bundle_" + pkg.version + (build_realse ? ".min.js" : ".js"),
-            chunkFilename:'chunk_[name]/[chunkhash:4].js'
+            chunkFilename:'chunk_[name]'+build_realse ?'/[chunkhash:4]':''+'.js'
         },
         module: {
             loaders: [
@@ -45,7 +46,7 @@ var webpack = require("webpack"),
                 },
                 {
                     test: /\.(png|jpg|svg|gif|eot|woff|ttf)$/,
-                    loader: 'url-loader?limit=50&name=[path][hash:8].[ext]'
+                    loader: 'url-loader?limit=4096&name=[path][hash:8].[ext]'
                 }]
         }
         , plugins: [
@@ -60,11 +61,16 @@ if(debug){
     _config.entry.app.push('webpack-dev-server/client?http://localhost:8088');
     _config.plugins.push(new webpack.HotModuleReplacementPlugin());
 }else if(build_test) {
-    _config.output.publicPath='https://...com/yaowang/dist/';
-    // _config.plugins.push(new webpack.optimize.UglifyJsPlugin());
-}else if(build_realse) {
-    _config.output.publicPath='https://....com/yaowang/dist/';
+    _config.output.publicPath='https://statictest.91yaowang.com/yaowang/dist/';
     _config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+}else if(build_realse) {
+    _config.output.publicPath='https://file.91yaowang.com/yaowang/dist/';
+    _config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+    _config.plugins.push(new ChunkManifestPlugin({
+            filename: "manifest.json",
+            manifestVariable: "webpackManifest"
+        })
+    )
 }
 
 compiler = webpack(_config);
