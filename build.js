@@ -81,8 +81,7 @@ if (debug) {
         inline:true,
         stats: { colors: true }
     });
-    server.listen(8088, "localhost", function () {
-    });
+    server.listen(8088);
 } else {
     compiler.run(function (err, status) {
         if (err) {
