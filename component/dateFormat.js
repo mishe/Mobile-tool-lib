@@ -12,7 +12,7 @@ module.exports=function (date, fmt) {
     }
 
     if (!_isDate(date))
-        date = new Date(getDateStr(date));
+        date = new Date(+getDateStr(date));
     var now = new Date(),
         o = {
             "M+": date.getMonth() + 1,
